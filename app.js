@@ -1,22 +1,24 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const userRouter = require("./routes/userRoutes");
 const app = express();
 
 
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-  
+
+app.use("/api/user", userRouter);
 
 app.get('/', (req, res) => {
   res.send("hello, this is homepage.");
 })
 
-app.listen(3001, () => {
-  console.log("Server is running on port 3001");
+app.listen(5656, () => {
+  console.log("Server is running on port 5656");
 });
 
-const url = 'mongodb://localhost:27017/E-Commerce';
+const url = 'mongodb://0.0.0.0:27017/E-Commerce';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true

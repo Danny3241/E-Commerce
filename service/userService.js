@@ -1,35 +1,35 @@
 const User = require('../models/user')
 
 const createUser = async (user) => {
-    console.log(property)
-    return await Property.create(property)
+    console.log(user)
+    return await User.create(user)
 }
 
 const getUser = async(user)=>{
-    return await Property.findOne(user)
+    return await User.findOne(user)
 }
 
-const getAllProperty = async () => {
-    return await Property.find()
+const getAllUser = async () => {
+    return await User.find()
 }
 
-const getPropertyById = async (id) => {
-    return await Property.findById(id)
+const getUserById = async (id) => {
+    return await User.findById(id)
 }
 
-const updateProperty = async (id, property) => {
-    return await Property.findByIdAndUpdate(id, property)
+const updateUser = async (id, user) => {
+    return await User.findByIdAndUpdate(id, user)
 }
 
-const deleteProperty = async (id) => {
-    return await Property.findByIdAndDelete(id)
+const deleteUser = async (id) => {
+    return await User.findByIdAndDelete(id)
 }
 
 module.exports = {
-    createProperty,
+    createUser,
     getUser,
-    getAllProperty,
-    getPropertyById,
-    updateProperty,
-    deleteProperty
+    getAllUser,
+    getUserById,
+    updateUser,
+    deleteUser
 }

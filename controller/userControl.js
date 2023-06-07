@@ -1,67 +1,77 @@
-const propertyService = require('../service/propertyService');
+const userService = require('../service/userService');
 
-const createProperty = async (req, res) => {
+const createUser = async (req, res) => {
     try {
         console.log(req.file)
-        const property = await propertyService.createProperty({
-            propertyName: req.body.propertyName,
-            description: req.body.description,
+        const user = await userService.createUser({
+            name: req.body.name,
             email: req.body.email,
             password: req.body.password,
-            photo: req.file.filename,
+            phone: req.body.phone,
+            isAdmin: req.body.isAdmin,
+            street: req.body.street,
+            apartment: req.body.apartment,
+            zip: req.body.zip,
+            city: req.body.city,
+            country: req.body.country,
         })
-        res.json({ data: property, status: 'success' })
+        res.json({ data: user, status: 'success' })
 
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 }
 
-const signIn = async (req, res) =>{
-try{
-    const user = await propertyService.getUser(req.body.email)
-     
-if(user){
-    if(user.password === req.body.password){
-}
-}
-}
-catch(err){
-    res.status(500).json({ error: err.message });
-}
+const signIn = async (req, res) => {
+    try {
+        // console.log(email, password);
+        // const password = req.body.password;
+        const user = await userService.getUser({ email: req.body.email })
+        const compare = await user.comparePassword(req.body.password, user.password);
+
+        if (compare) {
+            res.status(200).json({ data: "successfully login" })
+        }
+        else {
+            res.status(200).json({ data: "login fail" })
+        }
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 }
 
-const getAllProperty = async (req, res) => {
+const getAllUser = async (req, res) => {
     try {
-        const property = await propertyService.getAllProperty()
-        res.json({ data: property, status: 'success' })
+        const user = await userService.getAllUser()
+        res.json({ data: user, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 }
 
-const getPropertyById = async (req, res) => {
+const getUserById = async (req, res) => {
     try {
-        const property = await propertyService.getPropertyById(req.params.id)
-        res.json({ data: property, status: 'success' })
+        const user = await userService.getUserById(req.params.id)
+        res.json({ data: user, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 }
 
-const updateProperty = async (req, res) => {
+const updateUser = async (req, res) => {
     try {
-        const property = await propertyService.updateProperty(req.params.id, req.body)
-        res.json({ data: property, status: 'success' })
+        const user = await userService.updateUser(req.params.id, req.body)
+        res.json({ data: user, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 }
 
-const deleteProperty = async (req, res) => {
+const deleteUser = async (req, res) => {
     try {
-        const property = await propertyService.updateProperty(req.params.id)
-        res.json({ data: property, status: 'success' })
+        const user = await userService.deleteUser(req.params.id)
+        res.json({ data: user, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -70,10 +80,10 @@ const deleteProperty = async (req, res) => {
 
 
 module.exports = {
-    createProperty,
+    createUser,
     signIn,
-    getAllProperty,
-    getPropertyById,
-    updateProperty,
-    deleteProperty
+    getAllUser,
+    getUserById,
+    updateUser,
+    deleteUser
 }
