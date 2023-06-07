@@ -23,7 +23,7 @@ const options = {
 }
 mongoose.Promise = global.Promise;
 mongoose.connect(url, options)
-  .then(() => { console.log("Connected to MongoDB") })
+  .then(() => { console.log("Connected to MongoDB successfully") })
   .catch((err) => console.log(err));
 
 
