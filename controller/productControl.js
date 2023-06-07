@@ -6,7 +6,7 @@ const createProduct = async (req, res) => {
         const product = await productService.createProduct({
             name: req.body.name,
             description: req.body.description,
-            richDescription: req.body.richdescription,
+            richDescription: req.body.richDescription,
             image: req.body.image,
             brand: req.body.brand,
             price: req.body.price,
@@ -14,7 +14,7 @@ const createProduct = async (req, res) => {
             rating: req.body.rating,
             numReviews: req.body.numReviews,
             country: req.body.country,
-            isfeatured: req.body.isfeatured
+            isFeatured: req.body.isFeatured
         })
         res.json({ data: product, status: 'success' })
 

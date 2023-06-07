@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/userRoutes");
+const productRouter = require("./routes/productRoutes");
+const categoryRouter = require("./routes/categoryRoutes");
+
 const app = express();
 
 
@@ -8,7 +11,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static('../uploads'));
+
 app.use("/api/user", userRouter);
+app.use("/api/product", productRouter);
+app.use("/api/category", categoryRouter);
 
 app.get('/', (req, res) => {
   res.send("hello, this is homepage.");

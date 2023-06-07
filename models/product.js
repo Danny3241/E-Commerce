@@ -15,7 +15,7 @@ const productSchema = new Schema({
         required: true
     },
     image: {
-        type: String,
+        type: Array,
         required: true
     },
     brand: {
@@ -26,10 +26,10 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-    category: {
-        type: String,
-        required: true
-    },
+    // category: {
+    //     type: String,
+    //     required: true
+    // },
     countInStock: {
         type: String,
         required: true
