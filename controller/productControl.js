@@ -10,6 +10,7 @@ const createProduct = async (req, res) => {
             image: req.body.image,
             brand: req.body.brand,
             price: req.body.price,
+            category: req.body.category,
             countInStock: req.body.countInStock,
             rating: req.body.rating,
             numReviews: req.body.numReviews,
@@ -25,8 +26,8 @@ const createProduct = async (req, res) => {
 
 const getAllProduct = async (req, res) => {
     try {
-        const user = await productService.getAllProduct()
-        res.json({ data: user, status: 'success' })
+        const product = await productService.getAllProduct()
+        res.json({ data: product, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -34,8 +35,8 @@ const getAllProduct = async (req, res) => {
 
 const getProductById = async (req, res) => {
     try {
-        const user = await productService.getProductById(req.params.id)
-        res.json({ data: user, status: 'success' })
+        const product = await productService.getProductById(req.params.id)
+        res.json({ data: product, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -43,8 +44,8 @@ const getProductById = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-        const user = await productService.updateProduct(req.params.id, req.body)
-        res.json({ data: user, status: 'success' })
+        const product = await productService.updateProduct(req.params.id, req.body)
+        res.json({ data: product, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -52,8 +53,8 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
     try {
-        const user = await productService.deleteProduct(req.params.id)
-        res.json({ data: user, status: 'success' })
+        const product = await productService.deleteProduct(req.params.id)
+        res.json({ data: product, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

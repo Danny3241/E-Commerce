@@ -1,4 +1,3 @@
-const category = require('../models/category');
 const categoryService = require('../service/categoryService');
 
 const createCategory = async (req, res) => {
@@ -18,7 +17,7 @@ const createCategory = async (req, res) => {
 
 const getAllCategory = async (req, res) => {
     try {
-        const user = await categoryService.getAllCategory()
+        const category = await categoryService.getAllCategory()
         res.json({ data: category, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -27,8 +26,8 @@ const getAllCategory = async (req, res) => {
 
 const getCategoryById = async (req, res) => {
     try {
-        const user = await categoryService.getCategoryById(req.params.id)
-        res.json({ data: user, status: 'success' })
+        const category = await categoryService.getCategoryById(req.params.id)
+        res.json({ data: category, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -36,8 +35,8 @@ const getCategoryById = async (req, res) => {
 
 const updateCategory = async (req, res) => {
     try {
-        const user = await categoryService.updateCategory(req.params.id, req.body)
-        res.json({ data: user, status: 'success' })
+        const category = await categoryService.updateCategory(req.params.id, req.body)
+        res.json({ data: category, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -45,8 +44,8 @@ const updateCategory = async (req, res) => {
 
 const deleteCategory = async (req, res) => {
     try {
-        const user = await categoryService.deleteCategory(req.params.id)
-        res.json({ data: user, status: 'success' })
+        const category = await categoryService.deleteCategory(req.params.id)
+        res.json({ data: category, status: 'success' })
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
