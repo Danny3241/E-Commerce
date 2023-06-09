@@ -5,7 +5,7 @@ const createCategory = async (req, res) => {
         console.log(req.file)
         const category = await categoryService.createCategory({
             name: req.body.name,
-            //icon: req.body.icon,
+            icon: req.file.file,
             color: req.body.color
         })
         res.json({ data: category, status: 'success' })

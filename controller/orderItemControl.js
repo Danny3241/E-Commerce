@@ -4,9 +4,8 @@ const createOrderItem = async (req, res) => {
     try {
         console.log(req.file)
         const orderItem = await orderItemService.createOrderItem({
-            name: req.body.name,
-            //icon: req.body.icon,
-            color: req.body.color
+            qauntity: req.body.qauntity,
+            product: req.body.product
         })
         res.json({ data: orderItem, status: 'success' })
 

@@ -8,13 +8,14 @@ const orderItemRouter = require("./routes/orderItemRoutes");
 
 const app = express();
 
-require('dotenv/config');
-const authJwt = require('./helpers/jwt');
+// require('dotenv/config');
+// const authJwt = require('./helpers/jwt');
+// app.use(authJwt());
 
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-// app.use(authJwt());
+
 
 app.use(express.static(__dirname + '/public'));
 app.use('/uploads', express.static('../uploads'));
