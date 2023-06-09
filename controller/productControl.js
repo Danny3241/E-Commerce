@@ -14,7 +14,6 @@ const createProduct = async (req, res) => {
             countInStock: req.body.countInStock,
             rating: req.body.rating,
             numReviews: req.body.numReviews,
-            country: req.body.country,
             isFeatured: req.body.isFeatured
         })
         res.json({ data: product, status: 'success' })

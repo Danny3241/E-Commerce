@@ -1,5 +1,5 @@
 const express = require("express");
- 
+const upload = require("../middleware/uploads")
 const {
     createProduct,
     getAllProduct,
@@ -11,7 +11,7 @@ const {
 
 const router = express.Router();
 
-router.route('/').post(createProduct);
+router.route('/').post(upload.single('image'), createProduct);
 router.route('/').get(getAllProduct);
 router.route('/:id').get(getProductById);
 router.route('/:id').put(updateProduct);

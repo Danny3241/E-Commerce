@@ -5,7 +5,6 @@ const productRouter = require("./routes/productRoutes");
 const categoryRouter = require("./routes/categoryRoutes");
 const orderRouter = require("./routes/orderRoutes");
 const orderItemRouter = require("./routes/orderItemRoutes");
-
 const app = express();
 
 // require('dotenv/config');
@@ -18,7 +17,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 app.use(express.static(__dirname + '/public'));
-app.use('/uploads', express.static('../uploads'));
+app.use('/api/uploads', express.static('./uploads'));
 
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);

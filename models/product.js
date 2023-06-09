@@ -15,8 +15,7 @@ const productSchema = new Schema({
         required: true
     },
     image: {
-        type: Array,
-        required: true
+        type: String,
     },
     brand: {
         type: String,
@@ -44,8 +43,8 @@ const productSchema = new Schema({
         required: true
     },
     isFeatured: {
-        type: String,
-        required: true
+        type: Boolean,
+        default: false
     },
     dateCreated: {
         type: Date, 
