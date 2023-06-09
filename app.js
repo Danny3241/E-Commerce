@@ -3,15 +3,18 @@ const mongoose = require("mongoose");
 const userRouter = require("./routes/userRoutes");
 const productRouter = require("./routes/productRoutes");
 const categoryRouter = require("./routes/categoryRoutes");
-const orderRouter = require("../routes/orderRoutes");
-const orderItemRouter = require("../routes/orderItemRoutes");
+const orderRouter = require("./routes/orderRoutes");
+const orderItemRouter = require("./routes/orderItemRoutes");
 
 const app = express();
 
+require('dotenv/config');
+const authJwt = require('./helpers/jwt');
 
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+// app.use(authJwt());
 
 app.use(express.static(__dirname + '/public'));
 app.use('/uploads', express.static('../uploads'));

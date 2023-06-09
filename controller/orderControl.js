@@ -4,16 +4,16 @@ const createOrder = async (req, res) => {
     try {
         console.log(req.file)
         const order = await orderService.createOrder({
-            orderItem: req.body.name,
-            shippingAddress1: req.body.description,
-            shippingAddress2: req.body.richDescription,
-            city: req.body.image,
-            zip: req.body.brand,
-            country: req.body.price,
-            phone: req.body.category,
-            status: req.body.countInStock,
-            totalPrice: req.body.rating,
-            user: req.body.numReviews,
+            orderItem: req.body.orderItem,
+            shippingAddress1: req.body.shippingAddress1,
+            shippingAddress2: req.body.shippingAddress2,
+            city: req.body.city,
+            zip: req.body.zip,
+            country: req.body.country,
+            phone: req.body.phone,
+            status: req.body.status,
+            totalPrice: req.body.totalPrice,
+            user: req.body.user,
         })
         res.json({ data: order, status: 'success' })
 
