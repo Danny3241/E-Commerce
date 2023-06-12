@@ -1,11 +1,16 @@
 const UserLogin = require('../models/userLogin')
 
-const getUserLogin = async(user)=>{
-    return await User.findOne(user)
+const register = async (user) => {
+    console.log(user)
+    return await UserLogin.create(user)
+}
+const signIn = async(user)=>{
+    return await UserLogin.findOne(user)
 }
 
 
 
 module.exports = {
-    getUserLogin
+    register,
+    signIn
 }

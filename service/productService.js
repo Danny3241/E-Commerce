@@ -6,11 +6,11 @@ const createProduct = async (product) => {
 }
 
 const getAllProduct = async () => {
-    return await Product.find()
+    return await Product.find().populate('category')
 }
 
 const getProductById = async (id) => {
-    return await Product.findById(id)
+    return await Product.findById(id).populate('category')
 }
 
 const updateProduct = async (id, product) => {

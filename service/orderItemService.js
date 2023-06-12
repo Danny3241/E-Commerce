@@ -5,11 +5,11 @@ const createOrderItem= async (orderItem) => {
 }
 
 const getAllOrderItem = async () => {
-    return await OrderItem.find()
+    return await OrderItem.find().populate('product')
 }
 
 const getOrderItemById = async (id) => {
-    return await OrderItem.findById(id)
+    return await OrderItem.findById(id).populate('product')
 }
 
 const updateOrderItem = async (id, orderItem) => {

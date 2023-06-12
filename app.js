@@ -5,6 +5,7 @@ const productRouter = require("./routes/productRoutes");
 const categoryRouter = require("./routes/categoryRoutes");
 const orderRouter = require("./routes/orderRoutes");
 const orderItemRouter = require("./routes/orderItemRoutes");
+const userLoginRouter = require("./routes/userLoginRoutes");
 const app = express();
 
 // require('dotenv/config');
@@ -24,6 +25,7 @@ app.use("/api/product", productRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/orderItem", orderItemRouter);
+app.use("/api/userLogin", userLoginRouter)
 
 app.get('/', (req, res) => {
   res.send("hello, this is homepage.");
