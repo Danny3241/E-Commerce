@@ -2,11 +2,9 @@ const userService = require('../service/userService');
 
 const createUser = async (req, res) => {
     try {
-        console.log(req.file)
         const user = await userService.createUser({
+            userLogin: req.body.userLogin,
             name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
             phone: req.body.phone,
             isAdmin: req.body.isAdmin,
             street: req.body.street,
@@ -18,25 +16,6 @@ const createUser = async (req, res) => {
         res.json({ data: user, status: 'success' })
 
     } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
-
-const signIn = async (req, res) => {
-    try {
-        // console.log(email, password);
-        // const password = req.body.password;
-        const user = await userService.getUser({ email: req.body.email })
-        const compare = await user.comparePassword(req.body.password, user.password);
-
-        if (compare) {
-            res.status(200).json({ data: "successfully login" })
-        }
-        else {
-            res.status(200).json({ data: "login fail" })
-        }
-    }
-    catch (err) {
         res.status(500).json({ error: err.message });
     }
 }
@@ -81,7 +60,6 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
     createUser,
-    signIn,
     getAllUser,
     getUserById,
     updateUser,

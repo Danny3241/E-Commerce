@@ -2,7 +2,6 @@ const orderService = require('../service/orderService');
 
 const createOrder = async (req, res) => {
     try {
-        console.log(req.file)
         const order = await orderService.createOrder({
             orderItem: req.body.orderItem,
             shippingAddress1: req.body.shippingAddress1,

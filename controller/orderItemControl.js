@@ -2,7 +2,6 @@ const orderItemService = require('../service/orderItemService');
 
 const createOrderItem = async (req, res) => {
     try {
-        console.log(req.file)
         const orderItem = await orderItemService.createOrderItem({
             qauntity: req.body.qauntity,
             product: req.body.product

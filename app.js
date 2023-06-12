@@ -16,8 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
-app.use(express.static(__dirname + '/public'));
-app.use('/api/uploads', express.static('./uploads'));
+// app.use(express.static(__dirname + '/public'));
+// app.use('/api/uploads', express.static('./uploads'));
 
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);

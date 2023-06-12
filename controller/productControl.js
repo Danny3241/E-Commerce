@@ -2,12 +2,11 @@ const productService = require('../service/productService');
 
 const createProduct = async (req, res) => {
     try {
-        console.log(req.file)
         const product = await productService.createProduct({
             name: req.body.name,
             description: req.body.description,
             richDescription: req.body.richDescription,
-            image: req.file.filename,
+            // image: req.file.filename,
             brand: req.body.brand,
             price: req.body.price,
             category: req.body.category,

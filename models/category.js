@@ -6,9 +6,9 @@ const categorySchema = new Schema({
         type: String,
         required: true
     },
-    icon: {
-        type: String,
-    },
+    // icon: {
+    //     type: String,
+    // },
     color: {
         type: String,
     },
