@@ -16,6 +16,10 @@ const updateOrder = async (id, order) => {
     return await Order.findByIdAndUpdate(id, order)
 }
 
+// const updateStatus = async (id, order) => {
+//     return await Order.findByIdAndUpdate(id, order)
+// }
+
 const deleteOrder = async (id) => {
     return await Order.findByIdAndDelete(id)
 }
@@ -25,5 +29,6 @@ module.exports = {
     getAllOrder,
     getOrderById,
     updateOrder,
-    deleteOrder
+    deleteOrder,
+    // updateStatus
 }

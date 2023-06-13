@@ -10,7 +10,11 @@ const orderItemSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
         required: true,
-    }  
+    },
+    total:{
+        type: Number,
+        required: true 
+    }
 })
 
 

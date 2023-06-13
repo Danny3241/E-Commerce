@@ -1,10 +1,13 @@
 const orderItemService = require('../service/orderItemService');
-
+const service = require("../service/productService");
 const createOrderItem = async (req, res) => {
     try {
+        let { qauntity, product } = req.body;
+        const productdata = await service.getProductById(product);
+        console.log("abc==>", productdata)
+        let total = qauntity * productdata.price;
         const orderItem = await orderItemService.createOrderItem({
-            qauntity: req.body.qauntity,
-            product: req.body.product
+            qauntity, product, total
         })
         res.json({ data: orderItem, status: 'success' })
 

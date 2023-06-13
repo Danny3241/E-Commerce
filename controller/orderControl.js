@@ -10,7 +10,7 @@ const createOrder = async (req, res) => {
             zip: req.body.zip,
             country: req.body.country,
             phone: req.body.phone,
-            status: req.body.status,
+            // status: req.body.status,
             totalPrice: req.body.totalPrice,
             user: req.body.user,
         })
@@ -48,6 +48,17 @@ const updateOrder = async (req, res) => {
     }
 }
 
+const updateStatus = async (req, res) => {
+    try {
+        let status = req.body.status
+        console.log(status);
+        const order = await orderService.updateOrder(req.params.id, status)
+        res.json({ data: order, status: 'success' })
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 const deleteOrder = async (req, res) => {
     try {
         const order = await orderService.deleteOrder(req.params.id)
@@ -64,5 +75,6 @@ module.exports = {
     getAllOrder,
     getOrderById,
     updateOrder,
-    deleteOrder
+    deleteOrder,
+    updateStatus
 }
