@@ -13,6 +13,10 @@ const getProductById = async (id) => {
     return await Product.findById(id).populate('category')
 }
 
+const getProductByCategory = async (id) => {
+    return await Product.find({category:id}).populate('category')
+}
+
 const updateProduct = async (id, product) => {
     return await Product.findByIdAndUpdate(id, product)
 }
@@ -26,5 +30,5 @@ module.exports = {
     getAllProduct,
     getProductById,
     updateProduct,
-    deleteProduct
+    deleteProduct,getProductByCategory
 }
