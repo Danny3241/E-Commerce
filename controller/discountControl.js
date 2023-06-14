@@ -22,6 +22,14 @@ const createDiscount = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 }
+const getDiscountById = async (req, res) => {
+    try {
+        const discount = await discountService.getDiscountById(req.params.id, req.body)
+        res.json({ data: discount, status: 'success' })
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
 
 const updateDiscount = async (req, res) => {
     try {
@@ -34,5 +42,6 @@ const updateDiscount = async (req, res) => {
 
 module.exports = {
     createDiscount,
-    updateDiscount
+    updateDiscount,
+    getDiscountById
 }
