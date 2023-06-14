@@ -1,4 +1,5 @@
 const orderService = require('../service/orderService');
+const orderItemService = require('../service/orderItemService');
 
 const createOrder = async (req, res) => {
     try {
@@ -14,6 +15,7 @@ const createOrder = async (req, res) => {
             user: req.body.user,
         })
         res.json({ data: order, status: 'success' })
+        await orderItemService.deleteOrderItem(req.body.orderItem)
 
     } catch (err) {
         res.status(500).json({ error: err.message });

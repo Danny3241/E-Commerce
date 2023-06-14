@@ -13,8 +13,9 @@ const getOrderItemById = async (id) => {
 }
 
 const updateOrderItem = async (id, orderItem) => {
-    return await OrderItem.findByIdAndUpdate(id, orderItem)
-        // { $set: { quantity: orderItem.quantity, total: orderItem.total } })
+    return await OrderItem.findByIdAndUpdate({
+        _id: id
+    }, { $set: orderItem }, { new: true })
 }
 
 const deleteOrderItem = async (id) => {

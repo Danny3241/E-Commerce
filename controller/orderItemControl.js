@@ -3,14 +3,14 @@ const service = require("../service/productService");
 // const discountService = require ("../service/discountService")
 const createOrderItem = async (req, res) => {
     try {
-        let { quantity, product } = req.body;
+        let { quantity, product, user } = req.body;
         const productdata = await service.getProductById(product);
         // const discountdata = await discountService.create(discount);
         console.log("abc==>", productdata)
         let total = quantity * productdata.price;
         // let Total = total - discountdata.coupon_code
         const orderItem = await orderItemService.createOrderItem({
-            quantity, product, total
+            quantity, product, total, user
         })
         res.json({ data: orderItem, status: 'success' })
 
@@ -39,8 +39,12 @@ const getOrderItemById = async (req, res) => {
 
 const updateOrderItem = async (req, res) => {
     try {
-        const productData = await service.getOrderItemById(req.body.product);
-        console.log("Product Data:", productData);
+        const orderData = await orderItemService.getOrderItemById(req.params.id);
+
+        if(!orderData){
+            return res.status(401).json({ error : 'orderItem not found'})
+        }
+        const productData = await service.getProductById(orderData.product);
         const quantity = parseInt(req.body.quantity);
         const total = quantity * productData.price;    
         const orderItem = await orderItemService.updateOrderItem(req.params.id, {quantity, total})
@@ -52,6 +56,10 @@ const updateOrderItem = async (req, res) => {
 
 const deleteOrderItem = async (req, res) => {
     try {
+        const orderData = await orderItemService.getOrderItemById(req.params.id);
+        if(!orderData){
+            return res.status(401).json({ error : 'orderItem not found'})
+        }
         const orderItem = await orderItemService.deleteOrderItem(req.params.id)
         res.json({ data: orderItem, status: 'success' })
     } catch (err) {
