@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const orderItemSchema = new Schema({
-    qauntity: {
+    quantity: {
         type: Number,
         required: true
     },
@@ -11,10 +11,14 @@ const orderItemSchema = new Schema({
         ref: 'Product',
         required: true,
     },
-    total:{
+    total: {
         type: Number,
-        required: true 
-    }
+        required: true
+    },
+    // discount: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Discount'
+    // }
 })
 
 

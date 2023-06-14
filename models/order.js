@@ -34,9 +34,6 @@ const orderSchema = new Schema({
         required: true,
         default: "pending"
     },
-    totalPrice: {
-        type: Number,
-    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

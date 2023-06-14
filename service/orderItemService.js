@@ -1,6 +1,6 @@
 const OrderItem = require('../models/orderItem')
 
-const createOrderItem= async (orderItem) => {
+const createOrderItem = async (orderItem) => {
     return await OrderItem.create(orderItem)
 }
 
@@ -14,6 +14,7 @@ const getOrderItemById = async (id) => {
 
 const updateOrderItem = async (id, orderItem) => {
     return await OrderItem.findByIdAndUpdate(id, orderItem)
+        // { $set: { quantity: orderItem.quantity, total: orderItem.total } })
 }
 
 const deleteOrderItem = async (id) => {

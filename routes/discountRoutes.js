@@ -9,7 +9,7 @@ const {
 
 const router = express.Router();
 
-router.route('/discount').post(createDiscount);
+router.route('/').post(createDiscount);
 router.route('/:id').put(updateDiscount);
 
 module.exports = router;

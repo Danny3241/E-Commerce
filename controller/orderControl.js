@@ -11,7 +11,6 @@ const createOrder = async (req, res) => {
             country: req.body.country,
             phone: req.body.phone,
             // status: req.body.status,
-            totalPrice: req.body.totalPrice,
             user: req.body.user,
         })
         res.json({ data: order, status: 'success' })

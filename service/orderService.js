@@ -1,7 +1,7 @@
 const Order = require('../models/order')
 
 const createOrder = async (order) => {
-    return await Order.create(order)
+    return (await Order.create(order))
 }
 
 const getAllOrder = async () => {
