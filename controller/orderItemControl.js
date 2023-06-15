@@ -9,11 +9,8 @@ const createOrderItem = async (req, res) => {
         if (discount) {
             const discountdata = await discountService.getDiscountById(discount);
             const totalPrice = quantity * productdata.price;
-
             const discountPrice = discountdata.discount_rate / 100 * totalPrice
-
             const total = totalPrice - discountPrice
-
             const orderItem = await orderItemService.createOrderItem({
                 quantity, product, total, user, discount
             })
@@ -56,8 +53,11 @@ const updateOrderItem = async (req, res) => {
             return res.status(401).json({ error: 'orderItem not found' })
         }
         const productData = await service.getProductById(orderData.product);
+        const discountdata = await discountService.getDiscountById(orderData.discount);
         const quantity = parseInt(req.body.quantity);
-        const total = quantity * productData.price;
+        const totalPrice = quantity * productData.price;
+        const discountPrice = discountdata.discount_rate / 100 * totalPrice
+        const total = totalPrice - discountPrice
         const orderItem = await orderItemService.updateOrderItem(req.params.id, { quantity, total })
         res.json({ data: orderItem, status: 'success' })
     } catch (err) {
