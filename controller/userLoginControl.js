@@ -2,22 +2,19 @@ const userLoginService = require('../service/userLoginService');
 
 const register = async (req, res) => {
     try {
-        const userLogin = await userLoginService.register({
-            email: req.body.email,
-            password: req.body.password
-        });
+        const {email, password } = req.body;
 
-        if (!(userLogin.email && userLogin.password)) {
+        if (!(email && password)) {
             return res.status(400).send("All input is required");
         }
 
-        const oldUser = await userLoginService.getRegister({ email: userLogin.email });
+        const oldUser = await userLoginService.getRegister({ email });
 
         if (oldUser) {
             return res.status(409).send("User Already Exists. Please Login");
         }
-
-        res.json({ data: userLogin, status: 'success' });
+        const newUser = await userLoginService.register({ email, password });
+        res.json({ data: newUser, status: 'success' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
