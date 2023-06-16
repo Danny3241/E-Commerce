@@ -13,6 +13,7 @@ const register = async (req, res) => {
         if (oldUser) {
             return res.status(409).send("User Already Exists. Please Login");
         }
+
         const newUser = await userLoginService.register({ email, password });
         res.json({ data: newUser, status: 'success' });
     } catch (err) {
@@ -22,13 +23,16 @@ const register = async (req, res) => {
 
 const signIn = async (req, res) => {
     try {
-        const userLogin = await userLoginService.signIn({ email: req.body.email })
-        const compare = await userLogin.comparePassword(req.body.password, userLogin.password);
-        if (!(userLogin.email && userLogin.password)) {
+        const {email, password } = req.body;
+        const userLogin = await userLoginService.signIn({ email })
+        const compare = await userLogin.comparePassword(password, userLogin.password);
+
+        if (!(email && password)) {
             res.status(400).send("All input is required");
         }
         const user = await userLoginService.getRegister({ email: userLogin.email });
-        if (user, compare) {
+
+        if (user &&  compare) {
             res.status(200).send("user successfully login")
         } else {
             res.status(200).json({ data: "login fail" })
