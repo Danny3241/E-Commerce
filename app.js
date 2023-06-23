@@ -43,7 +43,7 @@ const swaggerDefinition = {
 const option = {
   swaggerDefinition: swaggerDefinition,
   // Path to the API docs
-  //apis: ["./routes/propertyRoute.js"],
+  apis: ["./routes/propertyRoute.js"],
 };
 
 const swaggerSpec = swaggerJSDoc(option);
