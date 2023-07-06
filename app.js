@@ -7,48 +7,48 @@ const orderRouter = require("./routes/orderRoutes");
 const orderItemRouter = require("./routes/orderItemRoutes");
 const userLoginRouter = require("./routes/userLoginRoutes");
 const discountRouter = require("./routes/discountRoutes");
-const swaggerJSDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
+// const swaggerJSDoc = require("swagger-jsdoc");
+// const swaggerUi = require("swagger-ui-express");
 const app = express();
 
-const swaggerDefinition = {
-  openapi: "3.0.0",
-  info: {
-    title: "Ecommerce Product Information",
-    version: "1.0.0",
-    description: " Information about the product",
-  },
-  servers: [
-    {
-      url: "http://localhost:5656/",
-    },
-  ],
-  components: {
-    securitySchemes: {
-      jwt: {
-        type: "http",
-        scheme: "bearer",
-        bearerFormat: "JWT",
-      },
-    },
-  },
-  security: [
-    {
-      jwt: [],
-    },
-  ],
-};
+// const swaggerDefinition = {
+//   openapi: "3.0.0",
+//   info: {
+//     title: "Ecommerce Product Information",
+//     version: "1.0.0",
+//     description: " Information about the product",
+//   },
+//   servers: [
+//     {
+//       url: "http://localhost:5656/",
+//     },
+//   ],
+//   components: {
+//     securitySchemes: {
+//       jwt: {
+//         type: "http",
+//         scheme: "bearer",
+//         bearerFormat: "JWT",
+//       },
+//     },
+//   },
+//   security: [
+//     {
+//       jwt: [],
+//     },
+//   ],
+// };
 
-// Options for the Swagger definition
-const option = {
-  swaggerDefinition: swaggerDefinition,
-  // Path to the API docs
-  apis: ["./routes/propertyRoute.js"],
-};
+// // Options for the Swagger definition
+// const option = {
+//   swaggerDefinition: swaggerDefinition,
+//   // Path to the API docs
+//   apis: ["./routes/propertyRoute.js"],
+// };
 
-const swaggerSpec = swaggerJSDoc(option);
+// const swaggerSpec = swaggerJSDoc(option);
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // require('dotenv/config');
 // const authJwt = require('./helpers/jwt');
