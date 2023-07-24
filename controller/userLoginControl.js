@@ -1,4 +1,7 @@
 const userLoginService = require('../service/userLoginService');
+const generateToken = require('../utils/generateToken')
+const bcrypt = require("bcryptjs")
+const salt = 12
 
 const register = async (req, res) => {
     try {
@@ -25,7 +28,7 @@ const signIn = async (req, res) => {
     try {
         const {email, password } = req.body;
         const userLogin = await userLoginService.signIn({ email })
-        const compare = await userLogin.comparePassword(password, userLogin.password);
+        const compare = bcrypt.compareSync(password, userLogin.password);
 
         if (!(email && password)) {
             res.status(400).send("All input is required");
@@ -37,6 +40,10 @@ const signIn = async (req, res) => {
         } else {
             res.status(200).json({ data: "login fail" })
         }
+        res.json({
+            email: user.email,
+            token: generateToken(user._id),
+          });
     }
     catch (err) {
         res.status(500).json({ error: err.message });

@@ -1,5 +1,7 @@
+const upload = require("../middleware/uploads");
 const express = require("express");
- 
+const protect = require("../middleware/auth")
+
 const {
     register,
     signIn
